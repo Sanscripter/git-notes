@@ -1,0 +1,36 @@
+There are two tools in every unix that make git version control possible
+
+Diff:  (diff file1.txt file2.txt > file1.patch)
+    - Takes the difference between to files
+    - By removing the longest common subsequence, the comparison only 
+    has to take into consideration the content of the file that has
+    indeed been altered (UNDERSTAND)
+    - Git uses this differences to tag whether a piece of info exists
+    in a file version or not (this is a hunk or chunk)
+    - The aggregate of chunks is what we call a patch 
+
+Patch: (patch < file1.patch)
+    - Applies a patch to a file
+    - If a person has the original file, they are just a patch away
+    from having the latest file. Assuming the application doesn`t go
+    through a build step, this is all it's needed for that to be
+    updated (i.e. applying a patch to a file)
+
+These tools make it so that we no longer have to send the whole file
+accross the wire or make infinite copies to keep different versions.
+All we need is the original file and the patches.
+
+We can further combine different files from a repo into a single file
+(tarball) and have it losslessly compressed (deflate) to share it.
+
+Appending some metadata to a .patch file, we get what we call today 
+a commit.
+
+The real content of your git project is in the .git folder (under git objects) and
+to git, none of the external files matter and can
+even be retored should their integrity bi violated, as long as the .git
+folder is preserved.
+
+inside a git diretory, try to play around with | git-hash object and 
+git cat-file -p to see how git stores objects into and retrieves from
+it's internal database. 
