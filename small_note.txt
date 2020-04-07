@@ -33,4 +33,15 @@ folder is preserved.
 
 inside a git diretory, try to play around with | git-hash object and 
 git cat-file -p to see how git stores objects into and retrieves from
-it's internal database. 
+it's internal database.
+
+git hash-object -w small_note.txt => to manually create blob for this file
+git cat-file -p :HASH: > small_note.txt => to manually checkout this file
+git update-index --add --cacheinfo 100644 :HASH: small_note.txt => to manually stage
+this file. Remeber -p means parent
+
+Example of a git tree object:
+    100644 blob b1c60fac066b463dfd9541adf473b9b6f3267338    small_note.txt
+
+Again, git is a local object storage database where the SHA-1 it stores
+serve as an id and integrity validator.
